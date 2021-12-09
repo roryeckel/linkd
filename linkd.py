@@ -18,7 +18,6 @@ db = SQLAlchemy(
         'autocommit': True,
         'autoflush': True})
 with app.test_request_context():
-    db.session.c
     db.create_all()
     db.session.flush()
 
