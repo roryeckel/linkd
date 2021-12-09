@@ -37,8 +37,7 @@ class AccessLog(db.Model):
         self.path = path
         self.ip = ip
 
-with app.app_context():
-    db.create_all()
+db.create_all()
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
