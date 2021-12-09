@@ -19,9 +19,6 @@ db = SQLAlchemy(
     session_options={
         'autocommit': True,
         'autoflush': True})
-with app.test_request_context():
-    db.create_all()
-    db.session.flush()
 
 class Link(db.Model):
     """Shortened URL with path"""
@@ -39,6 +36,9 @@ class AccessLog(db.Model):
         """Construct new log"""
         self.path = path
         self.ip = ip
+
+with app.app_context():
+    db.create_all()
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
