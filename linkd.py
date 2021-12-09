@@ -23,7 +23,7 @@ db = SQLAlchemy(
 class Link(db.Model):
     """Shortened URL with path"""
     path = db.Column(db.String(256), primary_key=True)
-    url = db.Column(db.String(2048), unique=True, nullable=False)
+    url = db.Column(db.String(2048), nullable=False)
     access_log = db.relationship('AccessLog')
 
 class AccessLog(db.Model):
