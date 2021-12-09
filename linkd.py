@@ -13,7 +13,7 @@ import os
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
+app.config.from_envvar('SQLALCHEMY_DATABASE_URI')
 db = SQLAlchemy(
     app,
     session_options={
